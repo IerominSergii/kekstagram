@@ -27,7 +27,9 @@ var DESCRIPTION = [
 ];
 
 // === elements ===
-
+var photoTemplate = document.querySelector('#picture');
+// var pictureLink = photoTemplate.content.querySelector('.picture__link');
+// var pictureImage = pictureLink.querySelector('.picture__img');
 
 // === functions ===
 var getRandomNumber = function (min, max) {
@@ -62,6 +64,15 @@ var generateRandomPhoto = function () {
   photo.comments = getRandomElementsFromArray(COMMENTS, commentsAmount);
   // photo.description
   photo.description = getRandomElementsFromArray(DESCRIPTION, DESCRIPTION_AMOUNT);
+
+  return photo;
+};
+
+var renderPhoto = function (photoObject) {
+  var photo = photoTemplate.cloneNode(true);
+  photo.querySelector('.picture__img').src = photoObject.url;
+  photo.querySelector('.picture__stat--likes').textContent = photoObject.likes;
+  photo.querySelector('.picture__stat--comments').textContent = photoObject.comments;
 
   return photo;
 };
