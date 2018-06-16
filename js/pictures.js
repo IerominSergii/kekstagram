@@ -151,4 +151,4 @@ fillBigPicture(photos[0]);
 hideElement(SOCIAL_COMMENT_COUNT);
 hideElement(SOCIAL_LOADMORE);
 
-// showElement(BIG_PICTURE);
+showElement(BIG_PICTURE);
