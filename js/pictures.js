@@ -63,11 +63,10 @@ var getRandomElementsFromArray = function (array, elementAmount) {
   var newArray = array.slice();
   var finalArray = [];
 
-  for (var k = 1; k <= elementAmount; k++) {
+  do {
     var randomIndex = getRandomNumber(0, newArray.length - 1);
-    var element = newArray.splice(randomIndex, 1);
-    finalArray.push(element[0]);
-  }
+    finalArray.push(newArray.splice(randomIndex, 1)[0]);
+  } while (finalArray.length < elementAmount);
 
   return finalArray;
 };
@@ -78,41 +77,24 @@ var removeWholeChildren = function (element) {
   }
 };
 
-var generateUrlNumbersArray = function (amount) {
-  var urlNumbers = [];
-  for (var m = 1; m <= amount; m++) {
-    urlNumbers.push(m);
-  }
-
-  return urlNumbers;
-};
-
 var generateRandomPhoto = function (urlNumber) {
   var photo = {};
-  // photo.url
   photo.url = 'photos/' + urlNumber + '.jpg';
-  // photo.likes
   photo.likes = getRandomNumber(MIN_LIKES_AMOUNT, MAX_LIKES_AMOUNT);
-  // photo.comments
   var commentsAmount = getRandomNumber(MIN_COMMENTS_AMOUNT, MAX_COMMENTS_AMOUNT);
   photo.comments = [];
   photo.comments = getRandomElementsFromArray(COMMENTS, commentsAmount);
-  // photo.description
   photo.description = getRandomElementsFromArray(DESCRIPTION, DESCRIPTION_AMOUNT);
 
   return photo;
 };
 
 var generatePhotos = function (photoAmount) {
-  var urls = generateUrlNumbersArray(photoAmount);
-  var temporaryUrlList = urls.slice();
   var photosList = [];
 
-  for (var l = 1; l <= urls.length; l++) {
-    var randomUrlIndex = getRandomNumber(0, temporaryUrlList.length - 1);
-    var currentUrl = temporaryUrlList.splice(randomUrlIndex, 1);
-    photosList.push(generateRandomPhoto(currentUrl[0]));
-  }
+  do {
+    photosList.push(generateRandomPhoto(photosList.length + 1));
+  } while (photosList.length < photoAmount);
 
   return photosList;
 };
@@ -169,4 +151,4 @@ fillBigPicture(photos[0]);
 hideElement(SOCIAL_COMMENT_COUNT);
 hideElement(SOCIAL_LOADMORE);
 
-showElement(BIG_PICTURE);
+// showElement(BIG_PICTURE);
