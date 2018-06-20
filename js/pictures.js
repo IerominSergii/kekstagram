@@ -33,13 +33,13 @@ var DESCRIPTION = [
 ];
 
 // === elements ===
-var PHOTO_TEMPLATE = document.querySelector('#picture');
-var PICTURE_LINK = PHOTO_TEMPLATE.content.querySelector('.picture__link');
+var photoTemplate = document.querySelector('#picture');
+var pictureLink = photoTemplate.content.querySelector('.picture__link');
 var pictureContainer = document.querySelector('.pictures');
 var bigPicture = document.querySelector('.big-picture');
 var socialContainer = bigPicture.querySelector('.social__comments');
 var bigPictureImage = bigPicture.querySelector('.big-picture__img');
-var SOCIAL_COMMENT_TEMPLATE = socialContainer.querySelector('.social__comment');
+var socialCommentTemplate = socialContainer.querySelector('.social__comment');
 var socialCommentCount = bigPicture.querySelector('.social__comment-count');
 var socialLoadMore = bigPicture.querySelector('.social__loadmore');
 
@@ -108,7 +108,7 @@ var generatePhotos = function (photoAmount) {
 };
 
 var renderPhoto = function (photoObject) {
-  var photo = PICTURE_LINK.cloneNode(true);
+  var photo = pictureLink.cloneNode(true);
   photo.querySelector('.picture__img').src = photoObject.url;
   photo.querySelector('.picture__stat--likes').textContent = photoObject.likes;
   photo.querySelector('.picture__stat--comments').textContent = photoObject.comments;
@@ -128,7 +128,7 @@ var addComments = function (parent, comments) {
   var commentsFragment = document.createDocumentFragment();
 
   comments.forEach(function (it) {
-    var comment = SOCIAL_COMMENT_TEMPLATE.cloneNode(true);
+    var comment = socialCommentTemplate.cloneNode(true);
     var avatarNumber = getRandomNumber(MIN_COMMENT_AVATAR, MAX_COMMENT_AVATAR);
     var commentImage = comment.querySelector('img');
     var commentText = comment.querySelector('.social__text');
