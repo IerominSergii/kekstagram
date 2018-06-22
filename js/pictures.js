@@ -38,6 +38,15 @@ var IMAGE_SCALE_MIN = 25;
 var IMAGE_SCALE_MAX = 100;
 var IMAGE_SCALE_INITIAL_VALUE = 100;
 
+var EFFECTS = {
+  // 'effect-none': null,
+  'effect-chrome': 'chrome',
+  'effect-sepia': 'sepia',
+  'effect-marvin': 'marvin',
+  'effect-phobos': 'phobos',
+  'effect-heat': 'heat',
+};
+
 // === elements ===
 var photoTemplate = document.querySelector('#picture');
 var pictureLink = photoTemplate.content.querySelector('.picture__link');
@@ -58,6 +67,7 @@ var resizeControlPlus = imgUploadResize.querySelector('.resize__control--plus');
 var imgUploadPreview = imgUploadOverlay.querySelector('.img-upload__preview');
 var imgUploadImage = imgUploadPreview.querySelector('img');
 var sizeValue = parseInt(resizeControlValue.value, 10);
+var imgUploadEffects = imgUploadOverlay.querySelector('.img-upload__effects');
 
 // === functions ===
 var getRandomNumber = function (min, max) {
@@ -180,6 +190,7 @@ var imgUploadPressEscHandler = function (evt) {
 };
 
 // === functions ===
+// scale
 var setInputScaleDefaultState = function () {
   resizeControlValue.value = IMAGE_SCALE_INITIAL_VALUE + '%';
   resizeControlValue.step = IMAGE_SCALE_STEP + '%';
@@ -222,6 +233,7 @@ var openImgUpload = function () {
   document.addEventListener('keydown', imgUploadPressEscHandler);
 
   imgUploadResize.addEventListener('click', initializeImageScaleHandler);
+  imgUploadEffects.addEventListener('click', imgUploadEffectsClickHandler);
 };
 
 var closeImgUpload = function () {
@@ -230,6 +242,26 @@ var closeImgUpload = function () {
   document.removeEventListener('keydown', imgUploadPressEscHandler);
 
   imgUploadResize.removeEventListener('click', initializeImageScaleHandler);
+  imgUploadEffects.removeEventListener('click', imgUploadEffectsClickHandler);
+};
+
+// image effects
+var setImageEffect = function (effectName) {
+  var newClassName = 'effects__preview--' + EFFECTS[effectName];
+  imgUploadImage.classList.add(newClassName);
+};
+
+var clearClassList = function (element) {
+  while (element.classList.length > 0) {
+    element.classList.remove(element.classList[0]);
+  }
+};
+
+var imgUploadEffectsClickHandler = function () {
+  var selectedInput = imgUploadEffects.querySelector('input:checked');
+  var effect = selectedInput.id;
+  clearClassList(imgUploadImage);
+  setImageEffect(effect);
 };
 
 
