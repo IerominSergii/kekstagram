@@ -39,7 +39,7 @@ var IMAGE_SCALE_MAX = 100;
 var IMAGE_SCALE_INITIAL_VALUE = 100;
 
 var EFFECTS = {
-  // 'effect-none': null,
+  'effect-none': 'none',
   'effect-chrome': 'chrome',
   'effect-sepia': 'sepia',
   'effect-marvin': 'marvin',
@@ -258,10 +258,12 @@ var clearClassList = function (element) {
 };
 
 var imgUploadEffectsClickHandler = function () {
-  var selectedInput = imgUploadEffects.querySelector('input:checked');
-  var effect = selectedInput.id;
+  var effect = imgUploadEffects.querySelector('input:checked').id;
   clearClassList(imgUploadImage);
-  setImageEffect(effect);
+
+  if (EFFECTS[effect] !== EFFECTS['effect-none']) {
+    setImageEffect(effect);
+  }
 };
 
 
