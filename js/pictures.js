@@ -321,6 +321,7 @@ var imgUploadOverlayClickHandler = function (evt) {
 };
 
 var openImgUpload = function () {
+  setFormDefaultState();
   showElement(imgUploadOverlay);
   imgUploadOverlay.addEventListener('click', imgUploadOverlayClickHandler);
   uploadCancel.addEventListener('click', uploadCancelClickHandler);
