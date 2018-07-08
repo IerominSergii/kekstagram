@@ -1,10 +1,6 @@
 'use strict';
 
 (function () {
-  // import
-  var getRandomElementsFromArray = window.util.getRandomElementsFromArray;
-  var getRandomNumber = window.util.getRandomNumber;
-
   // constants
   var MIN_COMMENTS_AMOUNT = 1;
   var MAX_COMMENTS_AMOUNT = 2;
@@ -28,6 +24,10 @@
     'Вот это тачка!'
   ];
 
+  // global
+  var getRandomElementsFromArray = window.util.getRandomElementsFromArray;
+  var getRandomNumber = window.util.getRandomNumber;
+
   // functions
   var generateRandomPhoto = function (urlNumber) {
     var photo = {};
@@ -41,7 +41,6 @@
     return photo;
   };
 
-  // export
   window.data = {
     generatePhotos: function (photoAmount) {
       var photosList = [];

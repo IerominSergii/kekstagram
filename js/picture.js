@@ -1,16 +1,16 @@
 'use strict';
 
 (function () {
-  // import
+  // constants
+  var MIN_COMMENT_AVATAR = 1;
+  var MAX_COMMENT_AVATAR = 6;
+
+  // global
   var removeChildren = window.util.removeChildren;
   var showElement = window.util.showElement;
   var hideElement = window.util.hideElement;
   var hideElementVisually = window.util.hideElementVisually;
   var getRandomNumber = window.util.getRandomNumber;
-
-  // constants
-  var MIN_COMMENT_AVATAR = 1;
-  var MAX_COMMENT_AVATAR = 6;
 
   // elements
   var bigPictureOverlay = document.querySelector('.big-picture');
@@ -67,9 +67,8 @@
     document.removeEventListener('keydown', bigPictureOverlayPressEscHandler);
   };
 
-  // export
-  window.picture = {
-    renderBigPicture: function (photo) {
+  window.bigPicture = {
+    render: function (photo) {
       fillBigPicture(photo);
       hideElementVisually(socialCommentCount);
       hideElementVisually(socialLoadMore);

@@ -5,9 +5,8 @@
   var photoTemplate = document.querySelector('#picture');
   var pictureLink = photoTemplate.content.querySelector('.picture__link');
 
-  // export
   window.preview = {
-    renderPhoto: function (photoObject, renderBigPictureHandler) {
+    render: function (photoObject, renderBigPictureHandler) {
       var photo = pictureLink.cloneNode(true);
       photo.querySelector('.picture__img').src = photoObject.url;
       photo.querySelector('.picture__stat--likes').textContent = photoObject.likes;

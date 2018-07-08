@@ -1,11 +1,6 @@
 'use strict';
 
 (function () {
-  // import
-  var hideElement = window.util.hideElement;
-  var clearClassList = window.util.clearClassList;
-  var showElement = window.util.showElement;
-
   // constants
   var ESC_KEYCODE = 27;
   var MAX_HASHTAGS_AMOUNT = 5;
@@ -50,6 +45,12 @@
   var DEFAULT_PIN_POSITION = 20;
   var DEFAULT_SCALE_LEVEL_POSITION = 91;
 
+  // global
+  var hideElement = window.util.hideElement;
+  var clearClassList = window.util.clearClassList;
+  var showElement = window.util.showElement;
+
+  // elements
   var pictureContainer = document.querySelector('.pictures');
   var imgUpload = pictureContainer.querySelector('.img-upload');
   var imgUploadForm = imgUpload.querySelector('.img-upload__form');
@@ -77,7 +78,7 @@
   var scaleLine = imgUploadScale.querySelector('.scale__line');
   var scaleLevel = imgUploadScale.querySelector('.scale__level');
 
-  // === form validity ===
+  // functions
   var resetCustomValidity = function (element) {
     element.style.outline = '';
     element.setCustomValidity('');
