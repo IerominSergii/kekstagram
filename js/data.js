@@ -33,10 +33,16 @@
     var photo = {};
     photo.url = 'photos/' + urlNumber + '.jpg';
     photo.likes = getRandomNumber(MIN_LIKES_AMOUNT, MAX_LIKES_AMOUNT);
-    var commentsAmount = getRandomNumber(MIN_COMMENTS_AMOUNT, MAX_COMMENTS_AMOUNT);
+    var commentsAmount = getRandomNumber(
+        MIN_COMMENTS_AMOUNT,
+        MAX_COMMENTS_AMOUNT
+    );
     photo.comments = [];
     photo.comments = getRandomElementsFromArray(COMMENTS, commentsAmount);
-    photo.description = getRandomElementsFromArray(DESCRIPTION, DESCRIPTION_AMOUNT);
+    photo.description = getRandomElementsFromArray(
+        DESCRIPTION,
+        DESCRIPTION_AMOUNT
+    );
 
     return photo;
   };
@@ -50,6 +56,6 @@
       } while (photosList.length < photoAmount);
 
       return photosList;
-    },
+    }
   };
 })();
