@@ -6,14 +6,24 @@
 
   // global
   var addElementsWithFragment = window.util.addElementsWithFragment;
-  var generatePhotos = window.data.generatePhotos;
   var renderPreview = window.preview.render;
   var renderBigPicture = window.bigPicture.render;
+
+  var loadData = window.backend.loadData;
+  var showError = window.message.error;
+
+  var renderPhotos = function (photos) {
+    addElementsWithFragment(
+        pictureContainer,
+        photos.slice(0, MAX_PHOTOS_AMOUNT),
+        renderPreview,
+        renderBigPicture
+    );
+  };
 
   // elements
   var pictureContainer = document.querySelector('.pictures');
 
   // start
-  var photos = generatePhotos(MAX_PHOTOS_AMOUNT);
-  addElementsWithFragment(pictureContainer, photos, renderPreview, renderBigPicture);
+  loadData(renderPhotos, showError);
 })();
