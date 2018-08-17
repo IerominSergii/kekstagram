@@ -15,27 +15,55 @@
     'effect-phobos': 'phobos',
     'effect-heat': 'heat'
   };
-  var EFFECTS_MIN_MAX = {
-    chrome: {
-      min: 0,
-      max: 1
-    },
-    sepia: {
-      min: 0,
-      max: 1
-    },
-    marvin: {
-      min: 0,
-      max: 100
-    },
-    phobos: {
-      min: 0,
-      max: 3
-    },
-    heat: {
-      min: 1,
-      max: 3
-    }
+  // var EFFECTS_MIN_MAX = {
+  //   chrome: {
+  //     min: 0,
+  //     max: 1
+  //   },
+  //   sepia: {
+  //     min: 0,
+  //     max: 1
+  //   },
+  //   marvin: {
+  //     min: 0,
+  //     max: 100
+  //   },
+  //   phobos: {
+  //     min: 0,
+  //     max: 3
+  //   },
+  //   heat: {
+  //     min: 1,
+  //     max: 3
+  //   }
+  // };
+  var EFFECT_NAMES = {
+    'effect-chrome': 'grayscale',
+    'effect-sepia': 'sepia',
+    'effect-marvin': 'invert',
+    'effect-phobos': 'blur',
+    'effect-heat': 'brightness'
+  };
+  var EFFECT_MEASURE = {
+    'effect-chrome': '',
+    'effect-sepia': '',
+    'effect-marvin': '%',
+    'effect-phobos': 'px',
+    'effect-heat': ''
+  };
+  var EFFECTS_MIN = {
+    'effect-chrome': 0,
+    'effect-sepia': 0,
+    'effect-marvin': 0,
+    'effect-phobos': 0,
+    'effect-heat': 1
+  };
+  var EFFECTS_MAX = {
+    'effect-chrome': 1,
+    'effect-sepia': 1,
+    'effect-marvin': 100,
+    'effect-phobos': 3,
+    'effect-heat': 3
   };
   var DEFAULT_PIN_POSITION = 20;
   var DEFAULT_SCALE_LEVEL_POSITION = 91;
@@ -97,48 +125,18 @@
   var generateFilterProperty = function (pin, effect) {
     var effectValue = '';
 
-    switch (effect) {
-      case 'effect-none':
-        effectValue = '';
-        return 'grayscale(' + effectValue + ')';
-      case 'effect-chrome':
-        effectValue = calculateEffectValue(
-            pin,
-            EFFECTS_MIN_MAX.chrome.min,
-            EFFECTS_MIN_MAX.chrome.max
-        );
-        return 'grayscale(' + effectValue + ')';
-      case 'effect-sepia':
-        effectValue = calculateEffectValue(
-            pin,
-            EFFECTS_MIN_MAX.sepia.min,
-            EFFECTS_MIN_MAX.sepia.max
-        );
-        return 'sepia(' + effectValue + ')';
-      case 'effect-marvin':
-        effectValue = calculateEffectValue(
-            pin,
-            EFFECTS_MIN_MAX.marvin.min,
-            EFFECTS_MIN_MAX.marvin.max
-        );
-        return 'invert(' + effectValue + '%)';
-      case 'effect-phobos':
-        effectValue = calculateEffectValue(
-            pin,
-            EFFECTS_MIN_MAX.phobos.min,
-            EFFECTS_MIN_MAX.phobos.max
-        );
-        return 'blur(' + effectValue + 'px)';
-      case 'effect-heat':
-        effectValue = calculateEffectValue(
-            pin,
-            EFFECTS_MIN_MAX.heat.min,
-            EFFECTS_MIN_MAX.heat.max
-        );
-        return 'brightness(' + effectValue + ')';
-      default:
-        throw new Error('Wrong effect type');
+    if (effect !== 'effect-none') {
+      effectValue = calculateEffectValue(
+          pin,
+          EFFECTS_MIN[effect],
+          EFFECTS_MAX[effect]
+      );
     }
+
+    var efProperty =
+      EFFECT_NAMES[effect] + '(' + effectValue + EFFECT_MEASURE[effect] + ')';
+
+    return efProperty;
   };
 
   // image effects
