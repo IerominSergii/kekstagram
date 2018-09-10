@@ -24,7 +24,6 @@
     'Вот это тачка!'
   ];
 
-  // global
   var getRandomElementsFromArray = window.util.getRandomElementsFromArray;
   var getRandomNumber = window.util.getRandomNumber;
 
