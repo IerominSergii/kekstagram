@@ -7,7 +7,6 @@
   var MAX_HASHTAG_LENGTH = 20;
   var MAX_DESCRIPTION_LENGTH = 120;
 
-  // global
   var hideElement = window.util.hideElement;
   var showElement = window.util.showElement;
   var error = window.message.error;

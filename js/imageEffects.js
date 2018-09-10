@@ -15,28 +15,6 @@
     'effect-phobos': 'phobos',
     'effect-heat': 'heat'
   };
-  // var EFFECTS_MIN_MAX = {
-  //   chrome: {
-  //     min: 0,
-  //     max: 1
-  //   },
-  //   sepia: {
-  //     min: 0,
-  //     max: 1
-  //   },
-  //   marvin: {
-  //     min: 0,
-  //     max: 100
-  //   },
-  //   phobos: {
-  //     min: 0,
-  //     max: 3
-  //   },
-  //   heat: {
-  //     min: 1,
-  //     max: 3
-  //   }
-  // };
   var EFFECT_NAMES = {
     'effect-chrome': 'grayscale',
     'effect-sepia': 'sepia',
@@ -68,7 +46,6 @@
   var DEFAULT_PIN_POSITION = 20;
   var DEFAULT_SCALE_LEVEL_POSITION = 91;
 
-  // global
   var clearClassList = window.util.clearClassList;
   var hideElement = window.util.hideElement;
   var showElement = window.util.showElement;
